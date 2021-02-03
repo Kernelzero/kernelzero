@@ -145,6 +145,90 @@
   
   
   <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="en">
+    <link itemprop="mainEntityOfPage" href="http://example.com/2021/02/03/fastlane-%EC%82%AC%EC%9A%A9%ED%95%98%EA%B8%B0-%EC%9C%84%ED%95%9C-%EB%A3%A8%EB%B9%84-%EB%B2%84%EC%A0%84-%EA%B4%80%EB%A6%AC%ED%95%98%EA%B8%B0/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="/images/avatar.gif">
+      <meta itemprop="name" content="kernelzero">
+      <meta itemprop="description" content="">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="kernelzero의 개발블로그.">
+    </span>
+      <header class="post-header">
+        <h2 class="post-title" itemprop="name headline">
+          
+            <a href="/2021/02/03/fastlane-%EC%82%AC%EC%9A%A9%ED%95%98%EA%B8%B0-%EC%9C%84%ED%95%9C-%EB%A3%A8%EB%B9%84-%EB%B2%84%EC%A0%84-%EA%B4%80%EB%A6%AC%ED%95%98%EA%B8%B0/" class="post-title-link" itemprop="url">fastlane 사용하기 위한 루비 버전 관리하기</a>
+        </h2>
+
+        <div class="post-meta">
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="far fa-calendar"></i>
+              </span>
+              <span class="post-meta-item-text">Posted on</span>
+              
+
+              <time title="Created: 2021-02-03 10:12:25 / Modified: 10:13:23" itemprop="dateCreated datePublished" datetime="2021-02-03T10:12:25+09:00">2021-02-03</time>
+            </span>
+
+          
+  
+  <span class="post-meta-item">
+    
+      <span class="post-meta-item-icon">
+        <i class="far fa-comment"></i>
+      </span>
+      <span class="post-meta-item-text">Disqus: </span>
+    
+    <a title="disqus" href="/2021/02/03/fastlane-%EC%82%AC%EC%9A%A9%ED%95%98%EA%B8%B0-%EC%9C%84%ED%95%9C-%EB%A3%A8%EB%B9%84-%EB%B2%84%EC%A0%84-%EA%B4%80%EB%A6%AC%ED%95%98%EA%B8%B0/#disqus_thread" itemprop="discussionUrl">
+      <span class="post-comments-count disqus-comment-count" data-disqus-identifier="2021/02/03/fastlane-사용하기-위한-루비-버전-관리하기/" itemprop="commentCount"></span>
+    </a>
+  </span>
+  
+  
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+          <h1 id="배포-자동화를-위한-fastlane-설치기-1"><a href="#배포-자동화를-위한-fastlane-설치기-1" class="headerlink" title="배포 자동화를 위한 fastlane 설치기 #1"></a>배포 자동화를 위한 fastlane 설치기 #1</h1><p>fastlane을 사용하기 위해서는 xcode command line tool이 설치가 선행되어야 한다</p>
+<p>터미널을 열고 아래의 명령어로 설치를 진행한다. 이미 설치가 되어 있다면 스킵</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$ xcode-select --install </span><br></pre></td></tr></table></figure>
+<p>루비는 이미 맥에 설치되어 있는데 현재 시점기준으로 2.6.3 버전이다.<br>근데, 이 버전이 오래된 버전이라서 오류가 많이난다고 알려져있다.<br>실제로 나도 fastlane을 설치 하려고 하면 잘 안되어서 새로운 버전을 설치했고 이과정에서는<br>루비 버전을 관리해주는 패키지라는 것이 필요하다는 것을 알게 되었다.</p>
+<p>루비 버전관리는 <strong>rvm</strong>, <strong>rbenv</strong> 이 두가지 패키지가 양대 산맥인데<br>점차 후자로 갈아타는 추세라고 한다. 전자는 무겁고 시스템 설정을 제멋대로 바꾼다고 하는 블로그를 볼 수 있었음.</p>
+<p>하지만 오래되었기 때문인지 레퍼런스가 rvm이 많아서 rvm을 설치해서 하려고 마음을 먹었다.<br>검색해서 나오는 설치방법이 상당히 많은데 쿡북처럼 되어있는 설명대로 rvm 설치를 따라서 해봤는데 잘안되어서 결국 rbenv로 갈아타기로 하였다.</p>
+<p>그럼, rbenv는 어떻게 설치하냐?<br>홈브루 라는 패키지 설치 도우미(?)로 설치를 하는데<br>아래의 명령어를 이용해서 먼저 홈브루를 설치한다.<br>윈도우의 설치마법사 같은거라고 생각하면 된다. 물론 GUI 가 아닌 CUI지만,</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">$ ruby -e &quot;$(curl -fsSL https:&#x2F;&#x2F;raw.githubusercontent.com&#x2F;Homebrew&#x2F;install&#x2F;master&#x2F;install)&quot;</span><br><span class="line">$ brew update</span><br></pre></td></tr></table></figure>
+<p>그 후, Homebrew를 이용하여 rbenv를 설치함</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">$ brew update                    # Homebrew 업데이트</span><br><span class="line">$ brew install rbenv ruby-build  # rbenv, ruby-build 설치</span><br></pre></td></tr></table></figure>
+<p>사용법은 다음 포스팅에서 다뤄보기로 하고 마무리.</p>
+<p>참조 사이트<br><a target="_blank" rel="noopener" href="https://jetalog.net/85">https://jetalog.net/85</a></p>
+
+      
+    </div>
+
+    
+    
+    
+      <footer class="post-footer">
+        <div class="post-eof"></div>
+      </footer>
+  </article>
+  
+  
+  
+
+      
+  
+  
+  <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="en">
     <link itemprop="mainEntityOfPage" href="http://example.com/2021/01/29/%EC%83%88%EB%A1%9C%EC%9A%B4-%ED%8F%AC%EC%8A%A4%ED%8C%85-%ED%85%8C%EC%8A%A4%ED%8A%B8/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
@@ -168,10 +252,16 @@
                 <i class="far fa-calendar"></i>
               </span>
               <span class="post-meta-item-text">Posted on</span>
-              
 
-              <time title="Created: 2021-01-29 16:30:28 / Modified: 16:58:47" itemprop="dateCreated datePublished" datetime="2021-01-29T16:30:28+09:00">2021-01-29</time>
+              <time title="Created: 2021-01-29 16:30:28" itemprop="dateCreated datePublished" datetime="2021-01-29T16:30:28+09:00">2021-01-29</time>
             </span>
+              <span class="post-meta-item">
+                <span class="post-meta-item-icon">
+                  <i class="far fa-calendar-check"></i>
+                </span>
+                <span class="post-meta-item-text">Edited on</span>
+                <time title="Modified: 2021-02-02 17:52:08" itemprop="dateModified" datetime="2021-02-02T17:52:08+09:00">2021-02-02</time>
+              </span>
 
           
   
@@ -199,7 +289,7 @@
 
       
           <p>사실 <strong>마크다운</strong> 문법은 그렇게 어렵진 않는데, 요즘같은 시대에 cli로 글을 작성해야 하니 좀 귀찮기도 하고<br>에디터가 깔끔한게 있어야 되는데… 우선은 비주얼 스튜디오에 플러그인을 깔아서 작성해본다.<br>갓MS.</p>
-<p>스택에디트로 미리보기를 보면서 작성하는 것에 나쁘진 않다.</p>
+<p>스택에디트로 미리보기를 보면서 작성하는 것도 나쁘진 않다.<br>어느 툴로 글을 쓸지 생각 좀 해봐야 겠는걸~</p>
 
       
     </div>
@@ -361,7 +451,7 @@
       <div class="site-state-item site-state-posts">
           <a href="/archives/">
         
-          <span class="site-state-item-count">2</span>
+          <span class="site-state-item-count">3</span>
           <span class="site-state-item-name">posts</span>
         </a>
       </div>
